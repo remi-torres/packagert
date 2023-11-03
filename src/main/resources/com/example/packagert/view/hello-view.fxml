@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.packagert.HelloController">
+   <children>
+      <VBox alignment="CENTER" layoutX="31.0" layoutY="27.0" prefHeight="228.0" prefWidth="202.0" spacing="5.0" style="-fx-border-color: silver;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="45.0">
+         <children>
+            <Label text="Project">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="projectTextField" />
+            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#projectAddAction" text="Add">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </Button>
+            <ListView fx:id="projectListView" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="20.0" layoutY="334.0" prefHeight="228.0" prefWidth="202.0" spacing="5.0" style="-fx-border-color: silver;" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="293.0">
+         <children>
+            <Label text="Table">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tableTextField" />
+            <Button mnemonicParsing="false" onAction="#tableAddAction" text="Add" />
+            <ListView fx:id="tableListView" prefHeight="200.0" prefWidth="200.0" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </VBox>
+      <TableView fx:id="columnTableView" layoutX="266.0" layoutY="184.0" prefHeight="200.0" prefWidth="636.0">
+        <columns>
+          <TableColumn fx:id="columnTableViewTable" prefWidth="75.0" text="Table" />
+          <TableColumn fx:id="columnTableViewName" prefWidth="75.0" text="Column name" />
+            <TableColumn fx:id="columnTableViewType" prefWidth="75.0" text="Type" />
+        </columns>
+      </TableView>
+      <GridPane layoutX="266.0" layoutY="108.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <TextField fx:id="columnNameTextField" GridPane.rowIndex="1" />
+            <ComboBox fx:id="columnTypeComboBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label text="Name" />
+            <Label text="Type" GridPane.columnIndex="1" />
+            <Label text="Size" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#columnAddAction" text="Add" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+      <Label fx:id="projectTableLink" layoutX="266.0" layoutY="20.0" AnchorPane.topAnchor="45.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <BorderPane layoutX="21.0" layoutY="540.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="20.0" />
+      <HBox layoutX="266.0" layoutY="407.0" prefHeight="20.0" prefWidth="636.0" spacing="5.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#sqliteCreateAction" text="Create SQLITE script" />
+            <Button mnemonicParsing="false" onAction="#javaCreateAction" text="Create Java Entity" />
+            <Button mnemonicParsing="false" onAction="#dtoCreateAction" text="Create Dto" />
+            <Button mnemonicParsing="false" onAction="#dtoMappingCreateAction" text="Create Dto MappingService" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
