@@ -1,31 +1,54 @@
 package com.example.packagert.util;
 
-import com.example.packagert.Main;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class FileUtil {
 
-    public static String getResourceFileContent(Class<?> callerClass, final String fileName ) throws IOException, URISyntaxException {
+    public static String getResourceFileContent(final String fileName, final Class<?> callerClass) {
+        try(InputStream content = callerClass.getResourceAsStream(fileName)){
+            if (content == null)
+                throw new IllegalArgumentException("file not found! " + fileName);
+            return new String(content.readAllBytes(), StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        final URL resource = Main.class.getResource(fileName);
+    public static String getFileContent(final String fileName) {
+        Path path = Paths.get(fileName);
+        try (Scanner scanner = new Scanner(path)) {
+            final StringBuilder stringBuilder = new StringBuilder();
+            while(scanner.hasNextLine())
+                stringBuilder.append(scanner.nextLine()).append(System.lineSeparator());
+            return stringBuilder.toString();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        if (resource == null)
-            throw new IllegalArgumentException("file not found! " + fileName);
+    public static void writeInFile(final String fileName, final String content){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))){
+            writer.write(content);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-        //File file = new File(resource.getFile());
-        final File file = new File(resource.toURI());
 
-        final String content = Files.readString(file.toPath(), StandardCharsets.UTF_8);
-        System.out.println(content);
-return content;
 
+    public static Set<String> getFilesInRepository(File directory) {
+            return Stream.of(directory.listFiles())
+                    .filter(file -> !file.isDirectory())
+                    .map(File::getName)
+                    .collect(Collectors.toSet());
     }
 
 }

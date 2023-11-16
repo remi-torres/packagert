@@ -59,7 +59,7 @@ public class ScriptGenerator {
 
     public String generateMappingService(final TableEntity table) throws IOException, URISyntaxException {
 
-        String fileContent = FileUtil.getResourceFileContent(ScriptGenerator.class, "template/MappingService.java");
+        String fileContent = FileUtil.getResourceFileContent("template/MappingService.java", ScriptGenerator.class);
 
         StringBuilder script = new StringBuilder();
 

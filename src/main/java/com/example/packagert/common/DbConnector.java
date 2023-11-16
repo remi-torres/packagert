@@ -76,7 +76,7 @@ public class DbConnector {
 
             List<T> result = new ArrayList<>();
             while (rs.next()) {
-                result.add((T) ((DbConvertion<?>)type.getConstructor().newInstance()).fromDb(rs));
+                result.add((T) ((DbConvertion<T>)type.getConstructor().newInstance()).fromDb(rs));
             }
             return result;
         } catch (SQLException e) {
