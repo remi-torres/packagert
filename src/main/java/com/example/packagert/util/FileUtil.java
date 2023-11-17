@@ -1,9 +1,8 @@
 package com.example.packagert.util;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,9 +21,9 @@ public class FileUtil {
         }
     }
 
-    public static String getFileContent(final String fileName) {
-        Path path = Paths.get(fileName);
-        try (Scanner scanner = new Scanner(path)) {
+    public static String getFileContent(final URL fileUrl) {
+       // Path path = Paths.get(fileName);
+        try (Scanner scanner = new Scanner(fileUrl.openStream())) {
             final StringBuilder stringBuilder = new StringBuilder();
             while(scanner.hasNextLine())
                 stringBuilder.append(scanner.nextLine()).append(System.lineSeparator());
