@@ -13,14 +13,16 @@ public class ProjectEntity implements DbConvertion<ProjectEntity> {
 
     private final LongProperty id = new SimpleLongProperty();
     private final StringProperty name = new SimpleStringProperty();
+    private final StringProperty path = new SimpleStringProperty();
 
     public ProjectEntity() {
         super();
     }
 
-    public ProjectEntity(final long id, final String name) {
+    public ProjectEntity(final long id, final String name, final String path) {
         this.id.set(id);
         this.name.set(name);
+        this.path.set(path);
     }
 
     public long getId() {
@@ -48,6 +50,7 @@ public class ProjectEntity implements DbConvertion<ProjectEntity> {
     public ProjectEntity fromDb(ResultSet resultSet) throws SQLException {
         this.id.set(resultSet.getLong("project_id"));
         this.name.set(resultSet.getString("project_name"));
+        this.path.set(resultSet.getString("project_path"));
         return this;
     }
 

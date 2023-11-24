@@ -6,7 +6,7 @@ import java.util.List;
 
 public class DbConnector {
 
-    public static final String DB_PATH = "C:\\Users\\torres\\Documents\\programmation\\python\\packageRT\\packagert.db";
+    public static final String DB_PATH = "C:\\Users\\torres\\Documents\\programmation\\packageRT\\packagert.db";
     private static final int NEW_KEY_INDEX = 1;
     private final String dbUrl;
 
@@ -56,16 +56,13 @@ public class DbConnector {
              ResultSet rs    = stmt.executeQuery(query)){
 
             List<T> result = new ArrayList<>();
-            while (rs.next()) {
+            while (rs.next())
                 result.add((T) ((DbConvertion<T>)type.getConstructor().newInstance()).fromDb(rs));
-            }
+
             return result;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (ReflectiveOperationException e) {
+        } catch (SQLException | ReflectiveOperationException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 
     public <T> List<T> selectAll(final String query, List<Object> parameters, final Class<T> type) {

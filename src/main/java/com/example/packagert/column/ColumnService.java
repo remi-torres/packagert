@@ -12,8 +12,8 @@ public class ColumnService {
         this.dbConnector = dbConnector;
     }
 
-    public long addColumn(final long tableId, String columnName, long typeId) {
-        return dbConnector.insert("INSERT INTO DbColumn(column_tableId, column_name, column_typeId) VALUES (?,?,?)", List.of(tableId, columnName, typeId));
+    public long addColumn(final long tableId, String columnName, String typeEnum) {
+        return dbConnector.insert("INSERT INTO DbColumn(column_tableId, column_name, column_typeId) VALUES (?,?,?)", List.of(tableId, columnName, typeEnum));
     }
 
     public List<ColumnEntity> getColumns(long tableId) {

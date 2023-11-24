@@ -13,7 +13,8 @@ public class TypeEntity implements DbConvertion<TypeEntity> {
 
     private final LongProperty id = new SimpleLongProperty();
     private final StringProperty name = new SimpleStringProperty();
-    private final StringProperty sqliteTranslation = new SimpleStringProperty();
+    private final StringProperty mariaDbField = new SimpleStringProperty();
+    private final StringProperty mariaDbConstraint = new SimpleStringProperty();
     private final StringProperty javaEntityTranslation = new SimpleStringProperty();
 
     /* - */
@@ -40,12 +41,12 @@ public class TypeEntity implements DbConvertion<TypeEntity> {
         return name;
     }
 
-    public String getSqliteTranslation() {
-        return sqliteTranslation.get();
+    public String getMariaDbField() {
+        return mariaDbField.get();
     }
 
-    public StringProperty sqliteTranslationProperty() {
-        return sqliteTranslation;
+    public StringProperty mariaDbFieldProperty() {
+        return mariaDbField;
     }
 
     public String getJavaEntityTranslation() {
@@ -67,8 +68,9 @@ public class TypeEntity implements DbConvertion<TypeEntity> {
     public TypeEntity fromDb(ResultSet resultSet) throws SQLException {
         this.id.set(resultSet.getLong("type_id"));
         this.name.set(resultSet.getString("type_name"));
-        this.sqliteTranslation.set(resultSet.getString("type_sqliteTranslation"));
-        this.javaEntityTranslation.set(resultSet.getString("type_javaTranslation"));
+        this.mariaDbField.set(resultSet.getString("type_mariadbField"));
+        this.mariaDbConstraint.set(resultSet.getString("type_mariadbConstraint"));
+        //this.javaEntityTranslation.set(resultSet.getString("type_javaTranslation"));
         return this;
     }
 }

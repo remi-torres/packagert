@@ -12,11 +12,11 @@ public class ProjectService {
         this.dbConnector = dbConnector;
     }
 
-    public void addProject(final String projectName){
-        dbConnector.insert("INSERT INTO DbProject(project_name) VALUES (?)", List.of(projectName));
+    public void addProject(final String projectName, final String projectPath){
+        dbConnector.insert("INSERT INTO Project(project_name, project_path) VALUES (?,?)", List.of(projectName, projectPath));
     }
 
     public List<ProjectEntity> getProjects() {
-        return dbConnector.selectAll("SELECT * FROM DbProject", ProjectEntity.class);
+        return dbConnector.selectAll("SELECT * FROM Project", ProjectEntity.class);
     }
 }

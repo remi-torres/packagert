@@ -13,6 +13,6 @@ public class TypeService {
     }
 
     public List<TypeEntity> getTypes() {
-        return dbConnector.selectAll("SELECT * FROM DbType", TypeEntity.class);
+        return dbConnector.selectAll("SELECT * FROM Type", TypeEntity.class);
     }
 }
